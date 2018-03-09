@@ -2,13 +2,13 @@ FROM ubuntu:16.04
 
 RUN export DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update -qq && apt-get install -y curl software-properties-common supervisor rsync sudo
+
 RUN apt-get install -y tzdata
 
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 
 RUN dpkg-reconfigure --frontend noninteractive tzdata
-
-RUN apt-get update -qq && apt-get install -y curl software-properties-common supervisor rsync sudo
 
 RUN apt-add-repository ppa:brightbox/ruby-ng -y && \
     apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8 && \
