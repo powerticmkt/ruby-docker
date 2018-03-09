@@ -14,7 +14,7 @@ RUN apt-add-repository ppa:brightbox/ruby-ng -y && \
     apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8 && \
     apt-get update -qq && \
     apt-get install -y ruby2.3 nano htop ruby2.3-dev build-essential libmysqlclient-dev nodejs git cron && \
-    rm -rf /var/lib/apt/lists/* &&
+    rm -rf /var/lib/apt/lists/*
 
 RUN echo 'gem: --no-document' >> ~/.gemrc
 
