@@ -9,5 +9,12 @@ RUN apt-add-repository ppa:brightbox/ruby-ng -y && \
     add-apt-repository 'deb http://www.rabbitmq.com/debian/ testing main' && \
     apt-get update -qq && \
     export DEBIAN_FRONTEND=noninteractive && \
-    apt install -y --allow-unauthenticated ruby2.3 nano htop ruby2.3-dev build-essential mysql-server libmysqlclient-dev rabbitmq-server nodejs git nginx && \
-    gem install bundler procodile --no-rdoc --no-ri
+    apt install -y --allow-unauthenticated ruby2.3 nano htop ruby2.3-dev build-essential mysql-server libmysqlclient-dev rabbitmq-server nodejs git cron && \
+    gem install bundler procodile whenever
+
+# Configure production environment variables
+ENV RAILS_ENV=production \
+    RACK_ENV=production
+
+# Expose port 3000 from the container
+EXPOSE 3000
