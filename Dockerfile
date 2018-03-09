@@ -4,6 +4,8 @@ RUN export DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get remove ruby*
 
+RUN apt-get purge ruby 
+
 RUN apt-get update -qq && \
     apt-get install -y curl software-properties-common supervisor rsync sudo tzdata && \
     rm -rf /var/lib/apt/lists/*
