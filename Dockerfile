@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN export DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -qq && \\
+RUN apt-get update -qq && \
     apt-get install -y curl software-properties-common supervisor rsync sudo tzdata && \
     rm -rf /var/lib/apt/lists/*
 
