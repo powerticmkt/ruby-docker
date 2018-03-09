@@ -22,8 +22,6 @@ RUN gem install bundler procodile whenever tzinfo tzinfo-data
 
 RUN gem update --system
 
-RUN bundle update
-
 # Configure production environment variables
 ENV RAILS_ENV=production \
     RACK_ENV=production
