@@ -24,6 +24,10 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 RUN echo 'gem: --no-document' >> ~/.gemrc
 
+RUN gem update --system
+
+RUN gem update
+
 RUN gem install bundler procodile whenever tzinfo tzinfo-data
 
 # Configure production environment variables
