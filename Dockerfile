@@ -2,6 +2,10 @@ FROM ruby:2.3.6-jessie
 
 RUN export DEBIAN_FRONTEND=noninteractive
 
+ENV AWS_REGION "us-east-1"
+ENV RAILS_ENV=production \
+    RACK_ENV=production
+
 RUN apt-get update -qq && \
     apt-get install -y \
                   curl \
@@ -18,6 +22,8 @@ RUN apt-get update -qq && \
                   tzdata && \
     rm -rf /var/lib/apt/lists/*
 
+RUN echo 'gem: --no-document' >> ~/.gemrc
+
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 
 RUN dpkg-reconfigure --frontend noninteractive tzdata
@@ -30,9 +36,11 @@ RUN gem update
 
 RUN gem install bundler procodile whenever tzinfo tzinfo-data
 
-# Configure production environment variables
-ENV RAILS_ENV=production \
-    RACK_ENV=production
+RUN service supervisor stop
+
+COPY supervisord.conf /etc/supervisord.conf
+
+RUN service supervisor start
 
 # Expose port 3000 from the container
 EXPOSE 3000
