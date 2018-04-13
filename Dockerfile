@@ -15,7 +15,7 @@ RUN apt-get update -qq && \
                   vim \
                   less \
                   net-tools \
-                  telner \
+                  telnet \
                   socat \
                   dnsutils \
                   netcat \
@@ -23,7 +23,7 @@ RUN apt-get update -qq && \
                   ssh \
                   rsync \
                   python \
-                  pip \
+                  python-pip \
                   iproute \
                   jq \
                   git \
