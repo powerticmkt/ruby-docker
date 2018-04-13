@@ -44,6 +44,13 @@ RUN wget -O - http://download.redis.io/releases/redis-3.2.6.tar.gz | tar zx && \
     cp redis.conf /etc/redis.conf && \
     rm -rf /redis-*
 
+#RUN apt-get install -y erlang-nox
+RUN wget -O - https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add - && \
+    echo 'deb http://www.rabbitmq.com/debian/ testing main' > /etc/apt/sources.list.d/rabbitmq.list && \
+    apt-get update
+RUN apt-get install -y rabbitmq-server
+RUN rabbitmq-plugins enable rabbitmq_management --offline
+
 RUN echo 'gem: --no-document' >> ~/.gemrc
 
 RUN ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
