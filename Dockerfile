@@ -12,6 +12,20 @@ RUN apt-get update -qq && \
                   build-essential \
                   libmysqlclient-dev \
                   cron \
+                  vim \
+                  less \
+                  net-tools \
+                  telner \
+                  socat \
+                  dnsutils \
+                  netcat \
+                  tree \
+                  ssh \
+                  rsync \
+                  python \
+                  pip \
+                  iproute \
+                  jq \
                   git \
                   nodejs \
                   software-properties-common \
@@ -21,6 +35,14 @@ RUN apt-get update -qq && \
                   nano \
                   tzdata && \
     rm -rf /var/lib/apt/lists/*
+
+#Redis
+RUN wget -O - http://download.redis.io/releases/redis-3.2.6.tar.gz | tar zx && \
+    cd redis-* && \
+    make -j4 && \
+    make install && \
+    cp redis.conf /etc/redis.conf && \
+    rm -rf /redis-*
 
 RUN echo 'gem: --no-document' >> ~/.gemrc
 
