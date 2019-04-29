@@ -1,4 +1,4 @@
-FROM ruby:2.3.6-jessie
+FROM ruby:2.3.7-jessie
 
 RUN export DEBIAN_FRONTEND=noninteractive
 
@@ -64,6 +64,8 @@ RUN gem update --system
 RUN gem update
 
 RUN gem install bundler procodile whenever tzinfo tzinfo-data
+
+RUN bundle update --bundler
 
 RUN service supervisor stop
 
